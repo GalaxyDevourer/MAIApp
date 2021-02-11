@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuController">
+   <children>
+      <Button fx:id="generateButton" layoutX="105.0" layoutY="308.0" mnemonicParsing="false" onMouseClicked="#startGenerating" prefHeight="27.0" prefWidth="189.0" text="Start Generating" />
+      <TextArea fx:id="namesCriteria" layoutX="20.0" layoutY="123.0" prefHeight="58.0" prefWidth="360.0" promptText="Write the name of the criteria, separated by commas" />
+      <Label layoutX="21.0" layoutY="85.0" prefHeight="30.0" prefWidth="250.0" text="Criteria count:" />
+      <Spinner fx:id="spinnerCriteria" layoutX="290.0" layoutY="87.0" prefHeight="1.0" prefWidth="88.0" />
+      <TextArea fx:id="namesAlternatives" layoutX="20.0" layoutY="229.0" prefHeight="58.0" prefWidth="360.0" promptText="Write the name of the alternatives, separated by commas" />
+      <Label layoutX="21.0" layoutY="191.0" prefHeight="30.0" prefWidth="250.0" text="Alternatives count:" />
+      <Spinner fx:id="spinnerAlternatives" layoutX="290.0" layoutY="193.0" prefHeight="1.0" prefWidth="88.0" />
+      <Label layoutX="19.0" layoutY="14.0" prefHeight="30.0" prefWidth="361.0" text="Write The Main Goal" />
+      <TextField fx:id="mainGoalField" layoutX="19.0" layoutY="44.0" prefHeight="27.0" prefWidth="361.0" />
+   </children>
+</AnchorPane>
