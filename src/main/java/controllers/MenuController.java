@@ -2,20 +2,31 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import models.csv.MPPTableGenerator;
+import javafx.stage.DirectoryChooser;
+import models.mai.MPPTableGenerator;
+import models.mai.MaiProcessor;
 import models.services.UtilGenerator;
 import models.services.WindowsDialogs;
 
+import java.io.File;
+
 public class MenuController implements WindowsDialogs {
     @FXML Button readButton;
-    @FXML TextField mainGoalField;
     @FXML Button generateButton;
     @FXML TextArea namesCriteria;
     @FXML Spinner<Integer> spinnerCriteria;
     @FXML TextArea namesAlternatives;
     @FXML Spinner<Integer> spinnerAlternatives;
 
-    private MPPTableGenerator mpp;
+    @FXML TextField criteriaFileName;
+    @FXML TextField alternativesFileName;
+    @FXML TextField folderDownloadPath;
+    @FXML Button fileFolderChooser;
+
+    @FXML CheckBox haveTables;
+    @FXML CheckBox isTest;
+
+    private MaiProcessor mai;
 
     @FXML public void initialize () {
         spinnerCriteria.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(2, 50, 6));
@@ -41,8 +52,12 @@ public class MenuController implements WindowsDialogs {
             if (criteriaList.length == alternativesValue) {
                 if (alternativesList.length == criteriaValue) {
                     System.out.println("Successfully started");
-                    mpp = new MPPTableGenerator(criteriaList, "E:\\_ИНСТИТУТ\\3 КУРС\\Второй семестр\\Інженерія знань\\Практика\\Лаб 1");
-                    mpp.generateTable();
+
+                    MPPTableGenerator criteria = new MPPTableGenerator(criteriaList, folderDownloadPath.getText(), isTest.isSelected());
+                    MPPTableGenerator alternatives = new MPPTableGenerator(alternativesList, folderDownloadPath.getText(), isTest.isSelected());
+
+                    mai = new MaiProcessor(criteria, criteriaFileName.getText(), alternatives, alternativesFileName.getText());
+                    mai.startGenerating();
                 }
                 else dialogRegMessage("Error!","Not enough or too many criteria names","Please, add some names in the list", Alert.AlertType.ERROR);
             }
@@ -53,12 +68,24 @@ public class MenuController implements WindowsDialogs {
             criteriaList = gen.randomNamesGenerator("Crit", criteriaValue);
             alternativesList = gen.randomNamesGenerator("Alt", alternativesValue);
 
-            mpp = new MPPTableGenerator(criteriaList, "E:\\_ИНСТИТУТ\\3 КУРС\\Второй семестр\\Інженерія знань\\Практика\\Лаб 1");
-            mpp.generateTable();
+            MPPTableGenerator criteria = new MPPTableGenerator(criteriaList, folderDownloadPath.getText(), isTest.isSelected());
+            MPPTableGenerator alternatives = new MPPTableGenerator(alternativesList, folderDownloadPath.getText(), isTest.isSelected());
+
+            mai = new MaiProcessor(criteria, "MPP_Criteria", alternatives, "MPP_Alternative");
+            mai.startGenerating();
         }
     }
 
-    @FXML public void startReading () {
-        mpp.startCalculating();
+    @FXML public void startProcessing() {
+        if (haveTables.isSelected()) {
+
+        }
+        else mai.startProcessing();
+    }
+
+    @FXML
+    public void chooseFolder () {
+        File file = new DirectoryChooser().showDialog(fileFolderChooser.getScene().getWindow());
+        folderDownloadPath.setText(file.getAbsolutePath());
     }
 }
