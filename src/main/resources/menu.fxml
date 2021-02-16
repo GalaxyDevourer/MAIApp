@@ -3,21 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuController">
    <children>
-      <Button fx:id="generateButton" layoutX="20.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#startGenerating" prefHeight="28.0" prefWidth="120.0" text="Start Generating" />
-      <TextArea fx:id="namesCriteria" layoutX="19.0" layoutY="178.0" prefHeight="45.0" prefWidth="361.0" />
-      <Label layoutX="21.0" layoutY="137.0" prefHeight="30.0" prefWidth="250.0" text="Criteria count:" />
-      <Spinner fx:id="spinnerCriteria" layoutX="290.0" layoutY="139.0" prefHeight="28.0" prefWidth="88.0" />
-      <TextArea fx:id="namesAlternatives" layoutX="20.0" layoutY="267.0" prefHeight="45.0" prefWidth="361.0" />
-      <Label layoutX="21.0" layoutY="229.0" prefHeight="30.0" prefWidth="250.0" text="Alternatives count:" />
-      <Spinner fx:id="spinnerAlternatives" layoutX="289.0" layoutY="231.0" prefHeight="1.0" prefWidth="88.0" />
-      <Button fx:id="readButton" layoutX="20.0" layoutY="374.0" mnemonicParsing="false" onMouseClicked="#startProcessing" prefHeight="28.0" prefWidth="120.0" text="Start Processing" />
-      <CheckBox fx:id="isTest" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="218.0" text="Use test values (only for 6x6 matrix)" />
-      <TextField fx:id="folderDownloadPath" editable="false" layoutX="21.0" layoutY="42.0" prefHeight="28.0" prefWidth="230.0" />
-      <Button fx:id="fileFolderChooser" layoutX="264.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#chooseFolder" prefHeight="28.0" prefWidth="114.0" text="Choose folder" />
-      <CheckBox fx:id="haveTables" layoutX="160.0" layoutY="374.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="219.0" text="I already have tables" />
-      <TextField fx:id="criteriaFileName" layoutX="21.0" layoutY="82.0" prefHeight="28.0" prefWidth="171.0" promptText="Write here criteria`s filename" text="MPP_Criteria" />
-      <TextField fx:id="alternativesFileName" layoutX="201.0" layoutY="82.0" prefHeight="28.0" prefWidth="177.0" promptText="Write here candidates filename" text="MPP_Alternative" />
+      <Button fx:id="generateButton" layoutX="20.0" layoutY="300.0" mnemonicParsing="false" onMouseClicked="#startGenerating" prefHeight="28.0" prefWidth="107.0" text="Start Generating" />
+      <TextArea fx:id="namesCriteria" layoutX="20.0" layoutY="141.0" prefHeight="45.0" prefWidth="361.0" />
+      <Label layoutX="22.0" layoutY="104.0" prefHeight="30.0" prefWidth="250.0" text="Criteria count:" />
+      <Spinner fx:id="spinnerCriteria" layoutX="291.0" layoutY="106.0" prefHeight="28.0" prefWidth="88.0" />
+      <TextArea fx:id="namesAlternatives" layoutX="19.0" layoutY="230.0" prefHeight="45.0" prefWidth="361.0" />
+      <Label layoutX="22.0" layoutY="193.0" prefHeight="30.0" prefWidth="250.0" text="Alternatives count:" />
+      <Spinner fx:id="spinnerAlternatives" layoutX="290.0" layoutY="195.0" prefHeight="1.0" prefWidth="88.0" />
+      <Button fx:id="readButton" layoutX="147.0" layoutY="300.0" mnemonicParsing="false" onMouseClicked="#startProcessing" prefHeight="28.0" prefWidth="108.0" text="Start Processing" />
+      <TextField fx:id="folderDownloadPath" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="28.0" prefWidth="230.0" />
+      <Button fx:id="fileFolderChooser" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#chooseFolder" prefHeight="28.0" prefWidth="114.0" text="Choose folder" />
+      <TextField fx:id="criteriaFileName" layoutX="21.0" layoutY="54.0" prefHeight="28.0" prefWidth="171.0" promptText="Write here criteria`s filename" text="MPP_Criteria" />
+      <TextField fx:id="alternativesFileName" layoutX="201.0" layoutY="54.0" prefHeight="28.0" prefWidth="177.0" promptText="Write here candidates filename" text="MPP_Alternative" />
+      <Button fx:id="resultButton" layoutX="273.0" layoutY="300.0" mnemonicParsing="false" onMouseClicked="#doResults" prefHeight="28.0" prefWidth="108.0" text="Make Results" />
    </children>
 </AnchorPane>

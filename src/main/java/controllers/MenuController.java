@@ -9,6 +9,7 @@ import models.services.UtilGenerator;
 import models.services.WindowsDialogs;
 
 import java.io.File;
+import java.util.Arrays;
 
 public class MenuController implements WindowsDialogs {
     @FXML Button readButton;
@@ -23,9 +24,6 @@ public class MenuController implements WindowsDialogs {
     @FXML TextField folderDownloadPath;
     @FXML Button fileFolderChooser;
 
-    @FXML CheckBox haveTables;
-    @FXML CheckBox isTest;
-
     private MaiProcessor mai;
 
     @FXML public void initialize () {
@@ -36,25 +34,29 @@ public class MenuController implements WindowsDialogs {
                                     "Or leave this field empty for auto-generation");
         namesAlternatives.setPromptText("Write the name of the alternatives, separated by commas \n" +
                                     "Or leave this field empty for auto-generation");
+
+        folderDownloadPath.setText("E:\\_ИНСТИТУТ\\3 КУРС\\Второй семестр\\Інженерія знань\\Практика\\Лаб 1");
     }
 
     @FXML public void startGenerating () {
-        String[] criteriaList;
-        String[] alternativesList;
-
         int criteriaValue = spinnerCriteria.getValue();
         int alternativesValue = spinnerAlternatives.getValue();
 
+        String[] criteriaList;
+        String[] alternativesList;
+
         if (!namesAlternatives.getText().equals("") && !namesCriteria.getText().equals("")) {
             criteriaList = namesCriteria.getText().split(",");
+            System.out.println(Arrays.toString(criteriaList));
             alternativesList = namesAlternatives.getText().split(",");
+            System.out.println(Arrays.toString(alternativesList));
 
-            if (criteriaList.length == alternativesValue) {
-                if (alternativesList.length == criteriaValue) {
+            if (criteriaList.length == criteriaValue) {
+                if (alternativesList.length == alternativesValue) {
                     System.out.println("Successfully started");
 
-                    MPPTableGenerator criteria = new MPPTableGenerator(criteriaList, folderDownloadPath.getText(), isTest.isSelected());
-                    MPPTableGenerator alternatives = new MPPTableGenerator(alternativesList, folderDownloadPath.getText(), isTest.isSelected());
+                    MPPTableGenerator criteria = new MPPTableGenerator(criteriaList, folderDownloadPath.getText());
+                    MPPTableGenerator alternatives = new MPPTableGenerator(alternativesList, folderDownloadPath.getText());
 
                     mai = new MaiProcessor(criteria, criteriaFileName.getText(), alternatives, alternativesFileName.getText());
                     mai.startGenerating();
@@ -68,8 +70,8 @@ public class MenuController implements WindowsDialogs {
             criteriaList = gen.randomNamesGenerator("Crit", criteriaValue);
             alternativesList = gen.randomNamesGenerator("Alt", alternativesValue);
 
-            MPPTableGenerator criteria = new MPPTableGenerator(criteriaList, folderDownloadPath.getText(), isTest.isSelected());
-            MPPTableGenerator alternatives = new MPPTableGenerator(alternativesList, folderDownloadPath.getText(), isTest.isSelected());
+            MPPTableGenerator criteria = new MPPTableGenerator(criteriaList, folderDownloadPath.getText());
+            MPPTableGenerator alternatives = new MPPTableGenerator(alternativesList, folderDownloadPath.getText());
 
             mai = new MaiProcessor(criteria, "MPP_Criteria", alternatives, "MPP_Alternative");
             mai.startGenerating();
@@ -77,10 +79,11 @@ public class MenuController implements WindowsDialogs {
     }
 
     @FXML public void startProcessing() {
-        if (haveTables.isSelected()) {
+        mai.startProcessing();
+    }
 
-        }
-        else mai.startProcessing();
+    @FXML public void doResults() {
+        mai.doResults();
     }
 
     @FXML

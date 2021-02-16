@@ -15,9 +15,9 @@ public interface CSVManager {
 
         try(FileWriter writer = new FileWriter(path + "/" + fileName, false))
         {
-            for (int i = 0; i < size; i++) {
+            for (String[] strings : tableArray) {
                 for (int j = 0; j < size; j++) {
-                    table.append(tableArray[i][j]).append(";");
+                    table.append(strings[j]).append(";");
                 }
                 table.append("\n");
             }
